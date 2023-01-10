@@ -4,6 +4,7 @@ import { getTodo } from "../graphql/queries";
 import { useQuery } from "@tanstack/react-query";
 import { Heading, Text } from "@aws-amplify/ui-react";
 import awsExports from '../aws-exports';
+import '@aws-amplify/ui-react/styles.css';
 
 Amplify.configure(awsExports);
 
@@ -14,7 +15,6 @@ Amplify.configure(awsExports);
 
 export default function Video() {
     const params = useParams();
-    console.log(params);
 
     const { status, data, error } = useQuery({
         queryKey: ['videoDetails'],
