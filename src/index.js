@@ -8,15 +8,29 @@ import {
 import reportWebVitals from './reportWebVitals';
 import { Amplify } from 'aws-amplify';
 import awsExports from './aws-exports';
-
+import Root from "./routes/root";
+import Index from "./routes/index";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import '@aws-amplify/ui-react/styles.css';
 
 Amplify.configure(awsExports);
+// Create a client
+const queryClient = new QueryClient()
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <Root />,
+    children: [
+      { index: true, element: <Index /> },
+    ],
   },
 ]);
 
@@ -24,7 +38,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
     <RouterProvider router={router} />
+    </QueryClientProvider>
   </React.StrictMode>
 );
 
