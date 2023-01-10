@@ -18,6 +18,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import '@aws-amplify/ui-react/styles.css';
+import Video from './routes/video'; 
 
 Amplify.configure(awsExports);
 // Create a client
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       { index: true, element: <Index /> },
+      {
+        element: <Video/>,
+        path: "videos/:videoID"
+      }
     ],
   },
 ]);
