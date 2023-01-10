@@ -22,11 +22,24 @@ export default function Root() {
             >
                 Home
             </Text>
+            <Text
+                variation="primary"
+                as="p"
+                color="blue"
+                lineHeight="1.5em"
+                fontWeight={400}
+                fontSize="1em"
+                fontStyle="normal"
+                textDecoration="none"
+                width="30vw"
+            >
+                Profile
+            </Text>
             <Flex direction="column">
                 <Divider
                     orientation="horizontal" />
             </Flex>
-            <div id="detail"><Outlet/></div>
+            <div id="detail"><Outlet /></div>
         </>
     );
 };

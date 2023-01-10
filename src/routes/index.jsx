@@ -14,6 +14,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Link } from "react-router-dom";
 Amplify.configure(awsExports);
 
 export default function Index() {
@@ -49,7 +50,7 @@ export default function Index() {
                         </CardContent>
                         <CardActions>
                             <Button size="small">Share</Button>
-                            <Button size="small">Learn More</Button>
+                            <Link to={`videos/${todo.id}`}><Button size="small">Learn More</Button></Link>
                         </CardActions>
                     </Card>
                 ))
