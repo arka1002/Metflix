@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Heading, Text } from "@aws-amplify/ui-react";
 import awsExports from '../aws-exports';
 import '@aws-amplify/ui-react/styles.css';
+import Iframe from 'react-iframe'
 
 Amplify.configure(awsExports);
 
@@ -24,15 +25,15 @@ export default function Video() {
             const video = oneVideoItem.data.getTodo;
             return video;
         },
-      })
-    
-      if (status === 'loading') {
+    })
+
+    if (status === 'loading') {
         return <span>Loading...</span>
-      }
-    
-      if (status === 'error') {
+    }
+
+    if (status === 'error') {
         return <span>Error: {error.message}</span>
-      }
+    }
 
     return (
         <div id="video">
@@ -56,6 +57,13 @@ export default function Video() {
             >
                 {data.description}
             </Text>
+            <Iframe url={data.contentLink}
+                width="640px"
+                height="320px"
+                id=""
+                className=""
+                display="block"
+                position="relative" />
         </div>
     );
 };
