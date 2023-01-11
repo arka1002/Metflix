@@ -33,7 +33,7 @@ export default function Index() {
     })
 
     return (
-        <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
+        <>
             {
                 query.data?.map((todo) => (
                     <Card sx={{ maxWidth: 345 }}>
@@ -57,31 +57,12 @@ export default function Index() {
                     </Card>
                 ))
             }
-        </ScrollMenu>
+        </>
     );
 }
 
 
 
 
-function LeftArrow() {
-    const { isFirstItemVisible, scrollPrev } =
-        React.useContext(VisibilityContext);
 
-    return (
-        <Arrow disabled={isFirstItemVisible} onClick={() => scrollPrev()}>
-            Left
-        </Arrow>
-    );
-}
-
-function RightArrow() {
-    const { isLastItemVisible, scrollNext } = React.useContext(VisibilityContext);
-
-    return (
-        <Arrow disabled={isLastItemVisible} onClick={() => scrollNext()}>
-            Right
-        </Arrow>
-    );
-}
 
