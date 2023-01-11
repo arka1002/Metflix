@@ -36,7 +36,7 @@ export default function Index() {
         <Grid container spacing={2}>
             {
                 query.data?.map((todo) => (
-                    <Grid item xs={3}>
+                    <Grid item xs={12} md={3}>
                         <Card sx={{ maxWidth: 345 }}>
                             <CardMedia
                                 sx={{ height: 140 }}
