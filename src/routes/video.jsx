@@ -87,6 +87,19 @@ export default function Video() {
                     width="30vw"
                 >{video.name}</Text>
             ))}
+            <Text
+                variation="primary"
+                as="p"
+                color="blue"
+                lineHeight="1.5em"
+                fontWeight={400}
+                fontSize="1em"
+                fontStyle="normal"
+                textDecoration="none"
+                width="30vw"
+            >
+                {video.category}
+            </Text>
 
             <Iframe url={video.contentLink}
                 width="640px"
