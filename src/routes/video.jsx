@@ -88,13 +88,13 @@ export default function Video() {
                 >{video.name}</Text>
             ))}
 
-            {/* <Iframe url={video.contentLink}
+            <Iframe url={video.contentLink}
                 width="640px"
                 height="320px"
                 id=""
                 className=""
                 display="block"
-                position="relative" /> */}
+                position="relative" />
         </div>
     );
 };
