@@ -7,7 +7,6 @@ import {
     useQuery,
     useQueryClient,
 } from '@tanstack/react-query';
-import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -15,6 +14,9 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Link } from "react-router-dom";
+import React from 'react';
+import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
+
 Amplify.configure(awsExports);
 
 export default function Index() {
@@ -31,7 +33,7 @@ export default function Index() {
     })
 
     return (
-        <>
+        <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
             {
                 query.data?.map((todo) => (
                     <Card sx={{ maxWidth: 345 }}>
@@ -55,6 +57,54 @@ export default function Index() {
                     </Card>
                 ))
             }
-        </>
+        </ScrollMenu>
     );
 }
+
+
+
+
+function LeftArrow() {
+    const { isFirstItemVisible, scrollPrev } =
+        React.useContext(VisibilityContext);
+
+    return (
+        <Arrow disabled={isFirstItemVisible} onClick={() => scrollPrev()}>
+            Left
+        </Arrow>
+    );
+}
+
+function RightArrow() {
+    const { isLastItemVisible, scrollNext } = React.useContext(VisibilityContext);
+
+    return (
+        <Arrow disabled={isLastItemVisible} onClick={() => scrollNext()}>
+            Right
+        </Arrow>
+    );
+}
+
+function Arrow({
+    children,
+    disabled,
+    onClick
+  }) {
+    return (
+      <button
+        disabled={disabled}
+        onClick={onClick}
+        style={{
+          cursor: "pointer",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          right: "1%",
+          opacity: disabled ? "0" : "1",
+          userSelect: "none"
+        }}
+      >
+        {children}
+      </button>
+    );
+  }
