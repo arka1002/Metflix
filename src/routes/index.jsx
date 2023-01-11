@@ -13,9 +13,10 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 import { Link } from "react-router-dom";
 import React from 'react';
-import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
+// import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
 
 Amplify.configure(awsExports);
 
@@ -33,31 +34,33 @@ export default function Index() {
     })
 
     return (
-        <>
+        <Grid container spacing={2}>
             {
                 query.data?.map((todo) => (
-                    <Card sx={{ maxWidth: 345 }}>
-                        <CardMedia
-                            sx={{ height: 140 }}
-                            image="/static/images/cards/contemplative-reptile.jpg"
-                            title="green iguana"
-                        />
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                                {todo.name}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                {todo.description}
-                            </Typography>
-                        </CardContent>
-                        <CardActions>
-                            <Button size="small">Share</Button>
-                            <Link to={`videos/${todo.id}`}><Button size="small">Learn More</Button></Link>
-                        </CardActions>
-                    </Card>
+                    <Grid item xs={3}>
+                        <Card sx={{ maxWidth: 345 }}>
+                            <CardMedia
+                                sx={{ height: 140 }}
+                                image="/static/images/cards/contemplative-reptile.jpg"
+                                title="green iguana"
+                            />
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    {todo.name}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    {todo.description}
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Button size="small">Share</Button>
+                                <Link to={`videos/${todo.id}`}><Button size="small">Learn More</Button></Link>
+                            </CardActions>
+                        </Card>
+                    </Grid>
                 ))
             }
-        </>
+        </Grid>
     );
 }
 
