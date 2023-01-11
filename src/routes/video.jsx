@@ -18,7 +18,11 @@ Amplify.configure(awsExports);
 export default function Video() {
     const params = useParams();
 
-    
+    let filter = {
+        category: {
+            eq: "Drama"
+        }
+    };
     //categories fetch
     const { data: reccs } = useQuery({
         queryKey: ['videoCategory'], queryFn: async () => {
@@ -46,11 +50,7 @@ export default function Video() {
     if (status === 'error') {
         return <span>Error: {error.message}</span>
     }
-    let filter = {
-        category: {
-            eq: video.category
-        }
-    };
+
     return (
         <div id="video">
             <Heading
