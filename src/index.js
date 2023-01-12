@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import { API, graphqlOperation } from "aws-amplify";
+import { getTodo } from "./graphql/queries";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -36,6 +38,12 @@ const router = createBrowserRouter([
       {
         element: <Video />,
         path: "videos/:videoID",
+        loader: async ({ params }) => {
+          const oneVideoItem = await API.graphql(
+            graphqlOperation(getTodo, { id: params.videoID }));
+          const video = oneVideoItem.data.getTodo;
+          return video;
+        }
       }
     ],
   },

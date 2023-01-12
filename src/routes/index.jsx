@@ -14,7 +14,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import React from 'react';
 
 Amplify.configure(awsExports);
@@ -53,7 +53,7 @@ export default function Index() {
                             </CardContent>
                             <CardActions>
                                 <Button size="small">Share</Button>
-                                <Link to={`videos/${todo.id}`}><Button size="small">Learn More</Button></Link>
+                                <NavLink to={`videos/${todo.id}`}><Button size="small">Learn More</Button></NavLink>
                             </CardActions>
                         </Card>
                     </Grid>

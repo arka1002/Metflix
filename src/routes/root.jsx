@@ -1,5 +1,5 @@
 import { Text, Flex, Divider } from "@aws-amplify/ui-react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, NavLink } from "react-router-dom";
 import { Amplify } from 'aws-amplify';
 import awsExports from '../aws-exports';
 Amplify.configure(awsExports);
@@ -8,7 +8,7 @@ Amplify.configure(awsExports);
 export default function Root() {
     return (
         <>
-            <Link to={`/`}>
+            <NavLink to={`/`}>
                 <Text
                     variation="primary"
                     as="p"
@@ -21,7 +21,7 @@ export default function Root() {
                     width="30vw"
                 >
                     Home
-                </Text></Link>
+                </Text></NavLink>
             <Text
                 variation="primary"
                 as="p"
