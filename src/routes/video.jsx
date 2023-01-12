@@ -17,33 +17,9 @@ Amplify.configure(awsExports);
 
 export default function Video() {
     const videos = useLoaderData();
-    //query for rcommmended videos
-    const [ filter, setFilter ] = useState(null);
-
-    setFilter(videos.category);;
 
 
-    const { data } = useQuery({
-        queryKey: ['reccs', filter],
-        queryFn: async () => {
-            const reccData = await API.graphql(
-                {
-                    query: listTodos,
-                    variables: {
-                        filter: {
-                            category: {
-                                eq: filter
-                            }
-                        }
-                    }
-                }
-            )
-            const reccos = reccData.data.listTodos.items;
-            return reccos;
-        },
-        enabled: !!filter
-    })
-    console.log(data);
+
     return (
         <div id="video">
             <Heading
@@ -67,19 +43,8 @@ export default function Video() {
                 {videos.description}
             </Text>
 
-            {data.map((video) => (
-                <Text
-                    variation="primary"
-                    as="p"
-                    color="black"
-                    lineHeight="1.5em"
-                    fontWeight={400}
-                    fontSize="1em"
-                    fontStyle="normal"
-                    textDecoration="none"
-                    width="30vw"
-                >{video.name}</Text>
-            ))}
+            <ReccedVideos category={videos.category} />
+
             <Text
                 variation="primary"
                 as="p"
@@ -104,3 +69,53 @@ export default function Video() {
         </div>
     );
 };
+
+
+
+function ReccedVideos({ category }) {
+    const { isLoading, isError, data, error } = useQuery({
+        queryKey: ['reccs', category],
+        queryFn: async () => {
+            const reccData = await API.graphql(
+                {
+                    query: listTodos,
+                    variables: {
+                        filter: {
+                            category: {
+                                eq: category
+                            }
+                        }
+                    }
+                }
+            )
+            const reccos = reccData.data.listTodos.items;
+            return reccos;
+        },
+        enabled: !!category,
+    })
+
+    if (isLoading) {
+        return <span>Loading...</span>
+    }
+
+    if (isError) {
+        return <span>Error: {error.message}</span>
+    }
+    return (
+        <>
+            {data.map((video) => (
+                <Text
+                    variation="primary"
+                    as="p"
+                    color="red"
+                    lineHeight="1.5em"
+                    fontWeight={400}
+                    fontSize="1em"
+                    fontStyle="normal"
+                    textDecoration="none"
+                    width="30vw"
+                >{video.name}</Text>
+            ))}
+        </>
+    );
+}
