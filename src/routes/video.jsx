@@ -6,6 +6,7 @@ import { Heading, Text } from "@aws-amplify/ui-react";
 import awsExports from '../aws-exports';
 import '@aws-amplify/ui-react/styles.css';
 import Iframe from 'react-iframe'
+import { useState } from "react";
 
 Amplify.configure(awsExports);
 
@@ -16,10 +17,14 @@ Amplify.configure(awsExports);
 
 export default function Video() {
     const videos = useLoaderData();
-
     //query for rcommmended videos
-    const { data: idk } = useQuery({
-        queryKey: ['reccs', videos.category],
+    const [ filter, setFilter ] = useState(null);
+
+    setFilter(videos.category);;
+
+
+    const { data } = useQuery({
+        queryKey: ['reccs', filter],
         queryFn: async () => {
             const reccData = await API.graphql(
                 {
@@ -27,7 +32,7 @@ export default function Video() {
                     variables: {
                         filter: {
                             category: {
-                                eq: videos.category 
+                                eq: filter
                             }
                         }
                     }
@@ -36,9 +41,9 @@ export default function Video() {
             const reccos = reccData.data.listTodos.items;
             return reccos;
         },
-        enabled: !!videos.category
+        enabled: !!filter
     })
-    console.log(idk);
+    console.log(data);
     return (
         <div id="video">
             <Heading
@@ -62,7 +67,7 @@ export default function Video() {
                 {videos.description}
             </Text>
 
-            {idk.map((video) => (
+            {data.map((video) => (
                 <Text
                     variation="primary"
                     as="p"
