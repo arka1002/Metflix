@@ -10,46 +10,12 @@ import Iframe from 'react-iframe'
 Amplify.configure(awsExports);
 
 
-// Query with filters, limits, and pagination
 
 
 
 
 export default function Video() {
-    // const params = useParams();
     const videos = useLoaderData();
-    // let filter = {
-    //     category: {
-    //         eq: "Drama"
-    //     }
-    // };
-    // //categories fetch
-    // const { data: reccs } = useQuery({
-    //     queryKey: ['videoCategory'], queryFn: async () => {
-    //         const todoData = await API.graphql({ query: listTodos, variables: { filter: filter } });
-    //         const todos = todoData.data.listTodos.items;
-    //         return todos;
-    //     }
-    // })
-
-
-    // const { status, data: video, error } = useQuery({
-    //     queryKey: ['videoDetails'],
-    //     queryFn: async () => {
-    //         const oneVideoItem = await API.graphql(
-    //             graphqlOperation(getTodo, { id: params.videoID }));
-    //         const video = oneVideoItem.data.getTodo;
-    //         return video;
-    //     },
-    // })
-
-    // if (status === 'loading') {
-    //     return <span>Loading...</span>
-    // }
-
-    // if (status === 'error') {
-    //     return <span>Error: {error.message}</span>
-    // }
 
     return (
         <div id="video">
