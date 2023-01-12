@@ -17,6 +17,28 @@ Amplify.configure(awsExports);
 export default function Video() {
     const videos = useLoaderData();
 
+    //query for rcommmended videos
+    const { data: idk } = useQuery({
+        queryKey: ['reccs', videos.category],
+        queryFn: async () => {
+            const reccData = await API.graphql(
+                {
+                    query: listTodos,
+                    variables: {
+                        filter: {
+                            category: {
+                                eq: videos.category 
+                            }
+                        }
+                    }
+                }
+            )
+            const reccos = reccData.data.listTodos.items;
+            return reccos;
+        },
+        enabled: !!videos.category
+    })
+    console.log(idk);
     return (
         <div id="video">
             <Heading
@@ -40,7 +62,7 @@ export default function Video() {
                 {videos.description}
             </Text>
 
-            {/* {reccs.map((video) => (
+            {idk.map((video) => (
                 <Text
                     variation="primary"
                     as="p"
@@ -52,7 +74,7 @@ export default function Video() {
                     textDecoration="none"
                     width="30vw"
                 >{video.name}</Text>
-            ))} */}
+            ))}
             <Text
                 variation="primary"
                 as="p"
