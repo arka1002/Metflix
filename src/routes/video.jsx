@@ -18,19 +18,19 @@ Amplify.configure(awsExports);
 export default function Video() {
     const params = useParams();
 
-    let filter = {
-        category: {
-            eq: "Drama"
-        }
-    };
-    //categories fetch
-    const { data: reccs } = useQuery({
-        queryKey: ['videoCategory'], queryFn: async () => {
-            const todoData = await API.graphql({ query: listTodos, variables: { filter: filter } });
-            const todos = todoData.data.listTodos.items;
-            return todos;
-        }
-    })
+    // let filter = {
+    //     category: {
+    //         eq: "Drama"
+    //     }
+    // };
+    // //categories fetch
+    // const { data: reccs } = useQuery({
+    //     queryKey: ['videoCategory'], queryFn: async () => {
+    //         const todoData = await API.graphql({ query: listTodos, variables: { filter: filter } });
+    //         const todos = todoData.data.listTodos.items;
+    //         return todos;
+    //     }
+    // })
 
 
     const { status, data: video, error } = useQuery({
@@ -74,7 +74,7 @@ export default function Video() {
                 {video.description}
             </Text>
 
-            {reccs.map((video) => (
+            {/* {reccs.map((video) => (
                 <Text
                     variation="primary"
                     as="p"
@@ -86,7 +86,7 @@ export default function Video() {
                     textDecoration="none"
                     width="30vw"
                 >{video.name}</Text>
-            ))}
+            ))} */}
             <Text
                 variation="primary"
                 as="p"
