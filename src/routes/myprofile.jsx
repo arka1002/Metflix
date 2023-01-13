@@ -7,6 +7,7 @@ import {
     useMutation,
     useQueryClient,
 } from '@tanstack/react-query';
+import { NavLink } from "react-router-dom";
 
 
 
@@ -49,11 +50,15 @@ export default function Myprofile() {
 
     return (
         <>
+        <p className="text-xl italic font-bold underline underline-offset-2 text-center mt-5">My liked Videos :-</p>
+        <ul class="list-disc text-center">
         {
             likedVideosList.map(video => (
-                <p>{video.name}</p>
+                
+                <NavLink to={`/videos/${video.id}`}><li className='text-amber-600 italic text-center'>{video.name}</li></NavLink>
             ))
         }
+        </ul>
         </>
     );
 };
