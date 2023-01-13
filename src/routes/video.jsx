@@ -1,6 +1,7 @@
 import { API, Amplify, graphqlOperation } from 'aws-amplify';
-import { useLoaderData, NavLink, Link } from "react-router-dom";
-import { listTodos } from "../graphql/queries";
+import { useLoaderData, NavLink, Link, useParams } from "react-router-dom";
+import { listTodos, getTodo } from "../graphql/queries";
+import { updateTodo } from "../graphql/mutations";
 import {
     useQuery,
     useMutation,
@@ -14,11 +15,11 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-// import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import LikeButton, { likeButton } from "../components/likeButton";
 
 
 Amplify.configure(awsExports);
@@ -26,24 +27,13 @@ Amplify.configure(awsExports);
 
 export default function Video() {
 
+    // Access the client
+    const queryClient = useQueryClient();
+
     //use the loader data in videos/:videoID
     const videos = useLoaderData();
 
 
-    // let likeButton;
-    // if (isLiked == "yes") {
-    //     likeButton = <Button
-    //         onClick={() => alert('Disliked')}
-    //     >
-    //         <ThumbDownIcon />
-    //     </Button>
-    // } else {
-    //     likeButton = <Button
-    //     onClick={() => alert('Liked')}
-    // >
-    //     <ThumbUpIcon />
-    // </Button>
-    // }
 
 
     return (
@@ -57,6 +47,7 @@ export default function Video() {
                     <p className='w-96'>
                         {videos.description}
                     </p>
+                    <LikeButton id={videos.id}/>
                 </div>
                 <div>
                     <Iframe url={videos.contentLink}
@@ -134,7 +125,7 @@ function ReccedVideos({ category }) {
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <NavLink to={`/videos/${video.id}`}><Button size="small">PLay Now</Button></NavLink>
+                        <NavLink to={`/videos/${video.id}`}><Button size="small">Play Now</Button></NavLink>
                     </CardActions>
                 </Card>
             ))}
