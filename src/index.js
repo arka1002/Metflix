@@ -23,6 +23,9 @@ import '@aws-amplify/ui-react/styles.css';
 import Video, {
   loader as videoLoader
 } from './routes/video';
+import Myprofile from './routes/myprofile';
+
+
 
 Amplify.configure(awsExports);
 // Create a client
@@ -52,9 +55,14 @@ const router = createBrowserRouter([
           const video = oneVideoItem.data.getTodo;
           return video;
         }
-      }
+      },
+      {
+        path: "profile/",
+        element: <Myprofile/>
+      },
     ],
   },
+  
 ]);
 
 
