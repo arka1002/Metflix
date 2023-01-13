@@ -45,8 +45,7 @@ export default function Index() {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button size="small">Share</Button>
-                                <NavLink to={`videos/${todo.id}`}><Button size="small">Learn More</Button></NavLink>
+                                <NavLink to={`videos/${todo.id}`}><Button size="small">PLay Now</Button></NavLink>
                             </CardActions>
                         </Card>
                     </Grid>
