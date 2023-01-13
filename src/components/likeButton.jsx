@@ -64,13 +64,23 @@ export default function LikeButton({ id }) {
     if (isSuccess == true) {
         if (feature.isLiked == "yes") {
             likeButton = <Button
-                onClick={() => alert('Disliked')}
+                onClick={() => {
+                    addingLikeMutation.mutate({
+                        id: feature.id,
+                        isLiked: 'no',
+                    })
+                }}
             >
                 <ThumbDownIcon />
             </Button>
         } else {
             likeButton = <Button
-                onClick={() => alert(`${feature.name}`)}
+                onClick={() => {
+                    addingLikeMutation.mutate({
+                        id: feature.id,
+                        isLiked: 'yes',
+                    })
+                }}
             >
                 <ThumbUpIcon />
             </Button>
