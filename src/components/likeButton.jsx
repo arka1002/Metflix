@@ -27,7 +27,7 @@ export default function LikeButton({ id }) {
         },
         onSuccess: () => {
             // Invalidate and refetch
-            queryClient.invalidateQueries({ queryKey: ['feature'] })
+            queryClient.invalidateQueries({ queryKey: ['feature', 'likedVideosList'] })
         },
     })
 

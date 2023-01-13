@@ -14,13 +14,13 @@ export default function Root() {
         <>
             <div className="flex flex-row h-24 items-center justify-evenly">
                 <NavLink to={`/`}>
-                    <a className="text-xl italic font-bold underline underline-offset-2">
+                    <h1 className="text-xl italic font-bold underline underline-offset-2">
                         Home <HomeIcon />
-                    </a></NavLink>
+                    </h1></NavLink>
                 <NavLink to={`/profile`}>
-                    <a className="text-xl italic font-bold underline underline-offset-2">
+                    <h1 className="text-xl italic font-bold underline underline-offset-2">
                         Profile <PersonIcon />
-                    </a>
+                    </h1>
                 </NavLink>
             </div>
             <Flex direction="column">
