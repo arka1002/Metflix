@@ -10,6 +10,8 @@ export const onCreateTodo = /* GraphQL */ `
       contentLink
       category
       imageLink
+      isLiked
+      isWatchedLater
       createdAt
       updatedAt
     }
@@ -24,6 +26,8 @@ export const onUpdateTodo = /* GraphQL */ `
       contentLink
       category
       imageLink
+      isLiked
+      isWatchedLater
       createdAt
       updatedAt
     }
@@ -38,6 +42,8 @@ export const onDeleteTodo = /* GraphQL */ `
       contentLink
       category
       imageLink
+      isLiked
+      isWatchedLater
       createdAt
       updatedAt
     }

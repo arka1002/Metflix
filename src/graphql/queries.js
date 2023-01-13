@@ -10,6 +10,8 @@ export const getTodo = /* GraphQL */ `
       contentLink
       category
       imageLink
+      isLiked
+      isWatchedLater
       createdAt
       updatedAt
     }
@@ -29,6 +31,8 @@ export const listTodos = /* GraphQL */ `
         contentLink
         category
         imageLink
+        isLiked
+        isWatchedLater
         createdAt
         updatedAt
       }

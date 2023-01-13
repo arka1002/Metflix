@@ -9,4 +9,6 @@ type Todo @model {
   contentLink: String
   category: String
   imageLink: String
+  isLiked: String
+  isWatchedLater: String
 }

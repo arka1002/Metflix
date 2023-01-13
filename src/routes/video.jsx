@@ -1,8 +1,12 @@
 import { API, Amplify, graphqlOperation } from 'aws-amplify';
 import { useLoaderData, NavLink, Link } from "react-router-dom";
 import { listTodos } from "../graphql/queries";
-import { useQuery } from "@tanstack/react-query";
-import { Flex, Divider } from "@aws-amplify/ui-react";
+import {
+    useQuery,
+    useMutation,
+    useQueryClient
+} from "@tanstack/react-query";
+import { Flex, Divider, Button } from "@aws-amplify/ui-react";
 import awsExports from '../aws-exports';
 import '@aws-amplify/ui-react/styles.css';
 import Iframe from 'react-iframe'
@@ -10,9 +14,11 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 
 
 Amplify.configure(awsExports);
@@ -22,6 +28,22 @@ export default function Video() {
 
     //use the loader data in videos/:videoID
     const videos = useLoaderData();
+
+
+    // let likeButton;
+    // if (isLiked == "yes") {
+    //     likeButton = <Button
+    //         onClick={() => alert('Disliked')}
+    //     >
+    //         <ThumbDownIcon />
+    //     </Button>
+    // } else {
+    //     likeButton = <Button
+    //     onClick={() => alert('Liked')}
+    // >
+    //     <ThumbUpIcon />
+    // </Button>
+    // }
 
 
     return (
