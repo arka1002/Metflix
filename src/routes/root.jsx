@@ -2,39 +2,25 @@ import { Text, Flex, Divider } from "@aws-amplify/ui-react";
 import { Outlet, NavLink } from "react-router-dom";
 import { Amplify } from 'aws-amplify';
 import awsExports from '../aws-exports';
+import HomeIcon from '@mui/icons-material/Home';
+import PersonIcon from '@mui/icons-material/Person';
+
+
 Amplify.configure(awsExports);
 
 
 export default function Root() {
     return (
         <>
-            <NavLink to={`/`}>
-                <Text
-                    variation="primary"
-                    as="p"
-                    color="blue"
-                    lineHeight="1.5em"
-                    fontWeight={400}
-                    fontSize="1em"
-                    fontStyle="normal"
-                    textDecoration="none"
-                    width="30vw"
-                >
-                    Home
-                </Text></NavLink>
-            <Text
-                variation="primary"
-                as="p"
-                color="blue"
-                lineHeight="1.5em"
-                fontWeight={400}
-                fontSize="1em"
-                fontStyle="normal"
-                textDecoration="none"
-                width="30vw"
-            >
-                Profile
-            </Text>
+            <div className="flex flex-row h-24 items-center justify-evenly">
+                <NavLink to={`/`}>
+                    <a className="text-xl italic font-bold underline underline-offset-2">
+                        Home <HomeIcon/>
+                    </a></NavLink>
+                <a className="text-xl italic font-bold underline underline-offset-2">
+                    Profile <PersonIcon/>
+                </a>
+            </div>
             <Flex direction="column">
                 <Divider
                     orientation="horizontal" />
