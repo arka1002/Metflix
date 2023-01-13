@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { API, graphqlOperation } from "aws-amplify";
-import { getTodo } from "./graphql/queries";
+import { getTodo, listTodos } from "./graphql/queries";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -34,7 +34,15 @@ const router = createBrowserRouter([
     path: "/",
     element: <Root />,
     children: [
-      { index: true, element: <Index /> },
+      {
+        index: true,
+        element: <Index />,
+        loader: async () => {
+          const listOfVideos = await API.graphql(graphqlOperation(listTodos));
+          const theList = listOfVideos.data.listTodos.items;
+          return theList;
+        }
+      },
       {
         element: <Video />,
         path: "videos/:videoID",

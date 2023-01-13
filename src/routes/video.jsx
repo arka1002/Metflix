@@ -1,12 +1,11 @@
 import { API, Amplify, graphqlOperation } from 'aws-amplify';
-import { useParams, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { getTodo, listTodos } from "../graphql/queries";
 import { useQuery } from "@tanstack/react-query";
 import { Heading, Text } from "@aws-amplify/ui-react";
 import awsExports from '../aws-exports';
 import '@aws-amplify/ui-react/styles.css';
 import Iframe from 'react-iframe'
-import { useState } from "react";
 
 Amplify.configure(awsExports);
 

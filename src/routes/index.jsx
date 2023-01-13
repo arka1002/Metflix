@@ -14,28 +14,21 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import { NavLink } from "react-router-dom";
+import { NavLink, useLoaderData } from "react-router-dom";
 import React from 'react';
 
 Amplify.configure(awsExports);
 
 export default function Index() {
-    // Access the client
-    const queryClient = useQueryClient();
 
-    // Queries
-    const query = useQuery({
-        queryKey: ['todos'], queryFn: async () => {
-            const todoData = await API.graphql(graphqlOperation(listTodos));
-            const todos = todoData.data.listTodos.items;
-            return todos;
-        }
-    })
+    //use the loader data to return the list of videos
+
+    const theListOfVideos = useLoaderData();
 
     return (
         <Grid container spacing={2}>
             {
-                query.data?.map((todo) => (
+                theListOfVideos.map((todo) => (
                     <Grid item xs={12} md={3}>
                         <Card sx={{ maxWidth: 345 }}>
                             <CardMedia
