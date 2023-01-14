@@ -20,6 +20,7 @@ import Grid from '@mui/material/Grid';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import LikeButton, { likeButton } from "../components/likeButton";
+import AddToPlaylist from '../components/addToPlaylist';
 
 
 Amplify.configure(awsExports);
@@ -48,6 +49,7 @@ export default function Video() {
                         {videos.description}
                     </p>
                     <LikeButton id={videos.id}/>
+                    <AddToPlaylist id={videos.id}/>
                 </div>
                 <div>
                     <Iframe url={videos.contentLink}
