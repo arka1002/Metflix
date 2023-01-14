@@ -24,6 +24,7 @@ import Video, {
   loader as videoLoader
 } from './routes/video';
 import Myprofile from './routes/myprofile';
+import { Authenticator } from '@aws-amplify/ui-react';
 
 
 
@@ -58,11 +59,11 @@ const router = createBrowserRouter([
       },
       {
         path: "profile/",
-        element: <Myprofile/>
+        element: <Myprofile />
       },
     ],
   },
-  
+
 ]);
 
 
@@ -70,7 +71,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <Authenticator.Provider>
+        <RouterProvider router={router} />
+      </Authenticator.Provider>
     </QueryClientProvider>
   </React.StrictMode>
 );

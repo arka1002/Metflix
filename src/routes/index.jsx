@@ -17,6 +17,7 @@ import Grid from '@mui/material/Grid';
 import { NavLink, useLoaderData } from "react-router-dom";
 import React from 'react';
 
+
 Amplify.configure(awsExports);
 
 export default function Index() {
