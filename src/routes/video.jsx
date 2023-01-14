@@ -56,7 +56,7 @@ export default function Video() {
                     </div>
 
 
-                    
+
                 </div>
                 <div>
                     <Iframe url={videos.contentLink}
@@ -73,7 +73,7 @@ export default function Video() {
             </Flex>
 
 
-            <div class="mt-10 grid grid-cols-4 gap-4">
+            <div className='mt-10'>
                 <ReccedVideos category={videos.category} />
             </div>
 
@@ -117,27 +117,31 @@ function ReccedVideos({ category }) {
         return <span>Error: {error.message}</span>
     }
     return (
-        <>
+        <Grid container spacing={2}>
             {data.map((video) => (
-                <Card sx={{ maxWidth: 345 }}>
-                    <CardMedia
-                        sx={{ height: 140 }}
-                        image="/static/images/cards/contemplative-reptile.jpg"
-                        title="green iguana"
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            {video.name}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            {video.description}
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <NavLink to={`/videos/${video.id}`}><Button size="small">Play Now</Button></NavLink>
-                    </CardActions>
-                </Card>
+                <Grid item xs={12} md={3}>
+                    <div className='flex justify-center'>
+                        <Card sx={{ maxWidth: 345 }}>
+                            <CardMedia
+                                sx={{ height: 140 }}
+                                image="/static/images/cards/contemplative-reptile.jpg"
+                                title="green iguana"
+                            />
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    {video.name}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    {video.description}
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <NavLink to={`/videos/${video.id}`}><Button size="small">Play Now</Button></NavLink>
+                            </CardActions>
+                        </Card>
+                    </div>
+                </Grid>
             ))}
-        </>
+        </Grid>
     );
 }

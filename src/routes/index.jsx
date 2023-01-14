@@ -30,24 +30,26 @@ export default function Index() {
             {
                 theListOfVideos.map((todo) => (
                     <Grid item xs={12} md={3}>
-                        <Card sx={{ maxWidth: 345 }}>
-                            <CardMedia
-                                sx={{ height: 140 }}
-                                image="/static/images/cards/contemplative-reptile.jpg"
-                                title="green iguana"
-                            />
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    {todo.name}
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    {todo.description}
-                                </Typography>
-                            </CardContent>
-                            <CardActions>
-                                <NavLink to={`videos/${todo.id}`}><Button size="small">PLay Now</Button></NavLink>
-                            </CardActions>
-                        </Card>
+                        <div className='flex justify-center'>
+                            <Card sx={{ maxWidth: 345 }}>
+                                <CardMedia
+                                    sx={{ height: 140 }}
+                                    image="/static/images/cards/contemplative-reptile.jpg"
+                                    title="green iguana"
+                                />
+                                <CardContent>
+                                    <Typography gutterBottom variant="h5" component="div">
+                                        {todo.name}
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                        {todo.description}
+                                    </Typography>
+                                </CardContent>
+                                <CardActions>
+                                    <NavLink to={`videos/${todo.id}`}><Button size="small">PLay Now</Button></NavLink>
+                                </CardActions>
+                            </Card>
+                        </div>
                     </Grid>
                 ))
             }
