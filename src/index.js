@@ -25,6 +25,7 @@ import Video, {
 } from './routes/video';
 import Myprofile from './routes/myprofile';
 import { Authenticator } from '@aws-amplify/ui-react';
+import Login from './routes/login';
 
 
 
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
         path: "profile/",
         element: <Myprofile />
       },
+      {
+        path: "login/",
+        element: <Login/>
+      }
     ],
   },
 

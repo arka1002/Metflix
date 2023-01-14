@@ -1,10 +1,13 @@
 import { Button } from "@aws-amplify/ui-react";
+import { NavLink } from "react-router-dom";
 
 
 export default function WelcomeLogin() {
     return (
         <>
-            <Button>Login</Button>
+            <NavLink to={`/login`}>
+                <Button>Login</Button>
+            </NavLink>
         </>
     );
 };

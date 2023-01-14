@@ -15,7 +15,7 @@ Amplify.configure(awsExports);
 
 export default function Root() {
 
-    
+    //checking the authentication status only -.-
     const { authStatus } = useAuthenticator(context => [context.authStatus]);
 
 
