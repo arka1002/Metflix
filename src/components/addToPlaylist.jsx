@@ -20,8 +20,8 @@ export default function AddToPlaylist({ id }) {
     const queryClient = useQueryClient();
 
 
-    //updating Likes
-    const addingLikeMutation = useMutation({
+    //updating playlist
+    const addingPlaylistMutation = useMutation({
         mutationFn: async (add) => {
             await API.graphql({ query: updateTodo, variables: { input: add } });
         },
@@ -31,8 +31,55 @@ export default function AddToPlaylist({ id }) {
         },
     })
 
+    let playlistButton;
+    //query for playlist button
+    const { isLoading, isError, data: feature, error, isSuccess } = useQuery({
+        queryKey: ['feature', id],
+        queryFn: async () => {
+            const placeHolderData = await API.graphql({
+                query: getTodo,
+                variables: { id: id }
+            });
+            const oneVideo = placeHolderData.data.getTodo;
+            return oneVideo;
+        },
+        enabled: !!id,
+    })
+    if (isLoading) {
+        return <span>Loading...</span>
+    }
+
+    if (isError) {
+        return <span>Error: {error.message}</span>
+    }
+
+    if (isSuccess == true) {
+        if (feature.isWatchedLater == "yes") {
+            playlistButton = <Button
+                onClick={() => {
+                    addingPlaylistMutation.mutate({
+                        id: feature.id,
+                        isWatchedLater: 'no',
+                    })
+                }}
+            >
+                <PlaylistRemoveIcon />
+            </Button>
+        } else {
+            playlistButton = <Button
+                onClick={() => {
+                    addingPlaylistMutation.mutate({
+                        id: feature.id,
+                        isWatchedLater: 'yes',
+                    })
+                }}
+            >
+                <PlaylistAddIcon />
+            </Button>
+        }
+
+    }
 
 
-
-    return <p>{id}</p>
+    return <p>{playlistButton}</p>
 };
