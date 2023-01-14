@@ -39,7 +39,7 @@ export default function Video() {
 
     return (
         <div id="video">
-            <div className='my-10 flex flex-row justify-evenly items-center'>
+            <div className='my-10 flex flex-col-reverse gap-y-8 md:flex-row md:justify-evenly items-center'>
                 <div>
                     <span className='text-xl italic font-bold underline underline-offset-2'>
                         {videos.name}
