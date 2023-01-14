@@ -123,7 +123,7 @@ function ReccedVideos({ category }) {
                         <Card sx={{ maxWidth: 345 }}>
                             <CardMedia
                                 sx={{ height: 140 }}
-                                image="/static/images/cards/contemplative-reptile.jpg"
+                                image={video.imageLink}
                                 title="green iguana"
                             />
                             <CardContent>
