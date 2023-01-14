@@ -49,7 +49,6 @@ export default function Video() {
                         {videos.description}
                     </p>
 
-
                     <div class="flex flex-row gap-4">
                         <div><LikeButton id={videos.id} /></div>
                         <div><AddToPlaylist id={videos.id} /></div>
