@@ -48,8 +48,15 @@ export default function Video() {
                     <p className='w-96'>
                         {videos.description}
                     </p>
-                    <LikeButton id={videos.id}/>
-                    <AddToPlaylist id={videos.id}/>
+
+
+                    <div class="flex flex-row gap-4">
+                        <div><LikeButton id={videos.id} /></div>
+                        <div><AddToPlaylist id={videos.id} /></div>
+                    </div>
+
+
+                    
                 </div>
                 <div>
                     <Iframe url={videos.contentLink}

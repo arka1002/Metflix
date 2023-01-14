@@ -26,11 +26,7 @@ export default function Myprofile() {
     // Queries
     const { isLoading, isError, data: likedVideosList, error } = useQuery({
         queryKey: ['likedVideosList'], queryFn: async () => {
-            const todoData = await API.graphql({ query: listTodos, variables: { filter: {
-                isLiked: {
-                    eq: "yes"
-                }
-            }}});
+            const todoData = await API.graphql({ query: listTodos });
             const todos = todoData.data.listTodos.items;
             return todos;
         }
@@ -53,7 +49,16 @@ export default function Myprofile() {
         <p className="text-xl italic font-bold underline underline-offset-2 text-center mt-5">My liked Videos :-</p>
         <ul class="list-disc text-center">
         {
-            likedVideosList.map(video => (
+            likedVideosList.filter(video => video.isLiked == "yes").map(video => (
+                
+                <NavLink to={`/videos/${video.id}`}><li className='text-amber-600 italic text-center'>{video.name}</li></NavLink>
+            ))
+        }
+        </ul>
+        <p className="text-xl italic font-bold underline underline-offset-2 text-center mt-5">My playlist :-</p>
+        <ul class="list-disc text-center">
+        {
+            likedVideosList.filter(video => video.isWatchedLater == "yes").map(video => (
                 
                 <NavLink to={`/videos/${video.id}`}><li className='text-amber-600 italic text-center'>{video.name}</li></NavLink>
             ))
