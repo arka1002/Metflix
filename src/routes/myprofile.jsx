@@ -8,7 +8,7 @@ import {
     useQueryClient,
 } from '@tanstack/react-query';
 import { NavLink, useLocation, Navigate } from "react-router-dom";
-import { useAuthenticator } from '@aws-amplify/ui-react';
+import { useAuthenticator, Button } from '@aws-amplify/ui-react';
 
 
 
@@ -30,13 +30,13 @@ export default function Myprofile() {
         return <Navigate to="/login" state={{ from: location }} replace />;
     }
 
-    return <MainList user = {user}/>;
+    return <MainList user={user} signOut={signOut} />;
 
 };
 
 
 
-function MainList({ user }) {
+function MainList({ user, signOut }) {
     // Access the client
     const queryClient = useQueryClient();
 
@@ -64,7 +64,11 @@ function MainList({ user }) {
 
     return (
         <>
-            <p>{user.username}</p>
+            <p className="text-xl italic font-bold underline underline-offset-2 text-center mt-5">Hi! {user.username}</p>
+
+            <div className='flex justify-center mt-2'>
+                <Button onClick={signOut}>Sign Out</Button>
+            </div>
             <p className="text-xl italic font-bold underline underline-offset-2 text-center mt-5">My liked Videos :-</p>
             <ul class="list-disc text-center">
                 {
