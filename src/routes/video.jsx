@@ -1,5 +1,5 @@
 import { API, Amplify, graphqlOperation } from 'aws-amplify';
-import { useLoaderData, NavLink, Link, useParams } from "react-router-dom";
+import { useLoaderData, NavLink, Link, useParams, useLocation, Navigate } from "react-router-dom";
 import { listTodos, getTodo } from "../graphql/queries";
 import { updateTodo } from "../graphql/mutations";
 import {
@@ -7,7 +7,7 @@ import {
     useMutation,
     useQueryClient
 } from "@tanstack/react-query";
-import { Flex, Divider, Button } from "@aws-amplify/ui-react";
+import { Flex, Divider, Button, useAuthenticator } from "@aws-amplify/ui-react";
 import awsExports from '../aws-exports';
 import '@aws-amplify/ui-react/styles.css';
 import Iframe from 'react-iframe'
@@ -33,7 +33,11 @@ export default function Video() {
 
     //use the loader data in videos/:videoID
     const videos = useLoaderData();
-
+    const location = useLocation();
+    const { route } = useAuthenticator((context) => [context.route]);
+    if (route !== 'authenticated') {
+        return <Navigate to="/login" state={{ from: location }} replace />;
+    }
 
 
 
