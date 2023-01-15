@@ -39,9 +39,11 @@ export default function Index() {
                                     title="green iguana"
                                 />
                                 <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        {todo.name}
-                                    </Typography>
+                                    <NavLink to={`videos/${todo.id}`}>
+                                        <Typography gutterBottom variant="h5" component="div">
+                                            {todo.name}
+                                        </Typography>
+                                    </NavLink>
                                     <Typography variant="body2" color="text.secondary">
                                         {todo.description}
                                     </Typography>

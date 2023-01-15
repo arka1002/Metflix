@@ -131,9 +131,11 @@ function ReccedVideos({ category }) {
                                 title="green iguana"
                             />
                             <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    {video.name}
-                                </Typography>
+                                <NavLink to={`/videos/${video.id}`}>
+                                    <Typography gutterBottom variant="h5" component="div">
+                                        {video.name}
+                                    </Typography>
+                                </NavLink>
                                 <Typography variant="body2" color="text.secondary">
                                     {video.description}
                                 </Typography>
