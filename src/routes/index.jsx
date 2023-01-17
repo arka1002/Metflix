@@ -49,7 +49,7 @@ export default function Index() {
                                     </Typography>
                                 </CardContent>
                                 <CardActions>
-                                    <NavLink to={`videos/${todo.id}`}><Button size="small">PLay Now</Button></NavLink>
+                                    <NavLink to={`videos/${todo.id}`}><Button size="small">Play Now</Button></NavLink>
                                 </CardActions>
                             </Card>
                         </div>
