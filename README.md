@@ -7,8 +7,8 @@ https://user-images.githubusercontent.com/105232141/214079300-23f62693-7db8-4071
 https://main.d2uwtg4duln1df.amplifyapp.com/
 
 ## Exclusive Features
--A page of video listing
--Individual pages of videos
--Recommended videos features
--Likes and add-to-playlist features
--Robust authentication powered by AWS cognito
+- A page of video listing
+- Individual pages of videos
+- Recommended videos features
+- Likes and add-to-playlist features
+- Robust authentication powered by AWS cognito
