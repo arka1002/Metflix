@@ -17,6 +17,12 @@
       },
       "auth": {
         "videolibraryapp64fdc5ff": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2uwtg4duln1df",
+          "type": "cicd"
+        }
       }
     }
   }
